@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"> 
+
+    <style>
+       :root{
+	--left-color:#00FFFF;
+	--right-color:#00BFFF;
+            }
+		body{
+			font-family:'Times New Roman',Times,serif;
+			letter-spacing:1px;
+			color:rgb(3,12,15);
+			background-image:linear-gradient(to right,var(--left-color),var(--right-color));
+		}
+                #Input{
+                       position:absolute;
+                       color:black;
+                       top:20%;
+                       left:25%;
+                       width:80%;
+                       height:84%;
+                       padding: 2px 2px;
+                }
+                span{
+                     font-size:25px;
+                }
+                #show{
+                font-size:20px;
+                padding:15px 0;
+                margin:11px 0;
+                overflow:auto;
+                color:black;   
+                }
+		</style>
+                </head>
+                <body>
+			<h1>Linux Terminal</h1>
+                        <img src="https://alphaville.github.io/optimization-engine/img/docker.gif">
+                        <div id="first">
+			<div id="Input">
+			<span>root@localhost ~# </span>
+			<input type="text" id="command" placeholder="Enter command" onkeypress="add(event)">
+			<pre id="show"></pre>
+                         </div>
+			</div>
+		</body>
+
+<script>
+	function add(z){
+         if(z.keyCode == 13)
+           {
+                document.getElementById('show').innerHTML = '';
+		var i=document.getElementById("command").value;
+		var xhr=new XMLHttpRequest()
+		xhr.open("GET","http://192.168.43.64/cgi-bin/docker.py?x="+i,false);
+		xhr.send();
+
+		
+		var output=xhr.responseText;
+		document.getElementById('show').innerHTML=output;
+                document.getElementById('command').value='';
+		}
+	}
+</script>
+</html>
+
